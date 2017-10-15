@@ -3,10 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { AuthGuardLogin } from './services/auth-guard-login.service';
 
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
-	{ path: '**', redirectTo: '/login' },
+	{ path: 'register', component: RegisterComponent },
+	{ path: '404', component: NotfoundComponent },
+	{ path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

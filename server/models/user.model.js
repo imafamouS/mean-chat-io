@@ -5,22 +5,21 @@ import UserValidation from './user.validation';
 const UserSchema = new Mongoose.Schema({
     username: {
         type: String,
-        required: true,
+        required: 'Username is required',
         trim: true,
         index: { unique: true },
         validate: [UserValidation.usernameValidate, 'Please choose another username !'],
     },
     password: {
         type: String,
-        required: true,
+        required: 'Password is required',
         trim: true,
-        validate: [UserValidation.passwordValidate, 'Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character']
+        validate: [UserValidation.passwordValidate, 'Password must be at least eight characters, at least one uppercase letter, one lowercase letter, one number and one special character']
     },
     role: {
         type: String,
-        required: true,
         trim: true,
-        validate: [UserValidation.roleValidate, 'Please choose a user role']
+        default: 'user'
     },
     createdAt: {
         type: Date,

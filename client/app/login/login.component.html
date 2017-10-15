@@ -1,13 +1,20 @@
-<div class="container">
-  <div class="card card-container">
-    <img id="profile-img" class="profile-img-card" src="./assets/images/avatar_default.png" />
-    <p id="profile-name" class="profile-name-card"></p>
-    <form class="form-signin"  [formGroup]="loginForm" (ngSubmit)="login()">
-      <input type="text" id="inputUsername" class="form-control" placeholder="Username" [formControl]="username" required autofocus>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" [formControl]="password" required>
-      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">
-        Sign in
-      </button>
-    </form>
-  </div>
-</div>
+<toaster-container [toasterconfig]="toastConfig"></toaster-container>
+<body class="align" style="height: 100vh">
+    <div class="alert alert-danger" *ngIf="!username.valid && username.touched">Invalid Username. Username must be at least 4 characters</div>
+    <div class="alert alert-danger" *ngIf="!password.valid && password.touched">Invalid Password. Password must be at least 8 characters</div>
+    <div class="grid">
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="form login">
+            <div class="form__field">
+                <input id="login__username" type="text" name="username" class="form__input" placeholder="Username" [formControl]="username" required>
+            </div>
+            <div class="form__field">
+                <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" [formControl]="password" required>
+            </div>
+            <div class="form__field">
+                <input type="submit" value="Sign In" [disabled]="!loginForm.valid">
+            </div>
+            <p class="text--center" style="color: #606468;">Not a member? <a href="javascript:void(0)" (click)=openSignUp()>Sign up now</a>
+            </p>
+        </form>
+    </div>
+</body>

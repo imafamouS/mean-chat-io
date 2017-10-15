@@ -1,0 +1,21 @@
+<toaster-container [toasterconfig]="toastConfig"></toaster-container>
+
+<body class="align" style="height: 100vh">
+    <div class="grid">
+        <form [formGroup]="registerForm" (ngSubmit)="register()" class="form login">
+            <div class="form__field">
+                <input id="login__username" type="text" name="username" class="form__input" placeholder="Username" 
+                formControlName="username" required>
+            </div>
+            <div class="form__field">
+                <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" formControlName="password" required>
+            </div>
+            <div class="form__field">
+                <input type="submit" value="Sign Up">
+            </div>
+            <p class="text--center" style="color: #606468;">Already registered ? <a  href="javascript:void(0)" 
+                (click)=openSignIn()>Sign in</a>
+            </p>
+        </form>
+    </div>
+</body>

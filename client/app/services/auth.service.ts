@@ -25,11 +25,15 @@ export class AuthService {
   login(usernameAndPassword) {
     return this.userService.login(usernameAndPassword).map(res => res.json()).map(
       res => {
-        localStorage.setItem('token', res.data.token);
-        const decodedUser = this.decodeUserFromToken(res.data.token);
-        this.setCurrentUser(decodedUser);
-        this.loggedIn = true;
-        return this.loggedIn;
+        if (res.success) {
+          localStorage.setItem('token', res.data.token);
+          const decodedUser = this.decodeUserFromToken(res.data.token);
+          this.setCurrentUser(decodedUser);
+          this.loggedIn = true;
+          return this.loggedIn;
+        }else{
+           throw new Error('Username or password is wrong !');
+        }
       }
     );
   }

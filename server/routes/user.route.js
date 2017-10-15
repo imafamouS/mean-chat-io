@@ -6,13 +6,12 @@ import ParamValidation from '../helpers/param.validation';
 
 const router = Express.Router();
 const userController = new UserController();
-
 router.route('/login')
     .post(ExpressValidation(ParamValidation.login),userController.login);
 
 router.route('/')
     .get(userController.count)
-    .post(userController.create);
+    .post(userController.register);
 
 router.route('/:id')
     .get(userController.getById)

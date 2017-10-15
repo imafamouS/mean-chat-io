@@ -5,6 +5,7 @@ import UserModel from '../models/user.model';
 import HelperResponse from '../helpers/helper.response';
 import HttpStatus from '../utils/http.status';
 import Config from '../config/config';
+import ErrorResponse from '../helpers/json.error';
 
 class UserController extends BaseController {
     constructor() {
@@ -17,11 +18,20 @@ class UserController extends BaseController {
         this.update = this.update.bind(this);
         this.delete = this.delete.bind(this);
     }
-    create(req, res) {
+
+    register(req, res) {
         let obj = new UserModel(req.body);
         obj.save()
-            .then(data => { res.json(HelperResponse.makeJsonResponseSuccess('Created successful', data)); })
-            .catch(err => { res.json(HelperResponse.makeJsonResponseFailure(err)); });
+            .then(data => {
+                res.json(HelperResponse.makeJsonResponseSuccess('Created successful', data));
+            })
+            .catch(err => { 
+                if(err.code == 11000){
+                    let error11000 = new ErrorResponse('Login','User already exists');
+                    return res.status(200).send(HelperResponse.makeJsonResponseFailure(error11000));
+                }
+                res.json(HelperResponse.makeJsonResponseFailure(err)); 
+            });
     }
 
     login(req, res) {
