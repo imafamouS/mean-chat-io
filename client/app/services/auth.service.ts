@@ -13,7 +13,8 @@ export class AuthService {
 
   currentUser = { _id: '', username: '', role: '' };
 
-  constructor(private userService: UserService,
+  constructor(
+    private userService: UserService,
     private router: Router) {
     const token = localStorage.getItem('token');
     if (token) {
@@ -31,8 +32,8 @@ export class AuthService {
           this.setCurrentUser(decodedUser);
           this.loggedIn = true;
           return this.loggedIn;
-        }else{
-           throw new Error('Username or password is wrong !');
+        } else {
+          throw new Error('Username or password is wrong !');
         }
       }
     );

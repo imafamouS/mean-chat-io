@@ -4,15 +4,15 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
-import { FadeInAnimation } from '../shared/animation/index.animation';
+import { SlideLeft2Right } from '../shared/animation/index';
 import { ToasterContainerComponent, ToasterService, ToasterConfig } from 'angular2-toaster';
 
 @Component({
 	selector: 'app-register',
 	templateUrl: './register.component.html',
 	styleUrls: ['./register.component.scss'],
-	animations: [FadeInAnimation],
-	host: { '[@FadeInAnimation]': '' }
+	animations: [SlideLeft2Right],
+	host: { '[@SlideLeft2Right]': '' }
 })
 export class RegisterComponent implements OnInit {
 	public toastConfig: ToasterConfig = new

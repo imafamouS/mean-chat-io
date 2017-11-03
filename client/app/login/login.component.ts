@@ -5,14 +5,14 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { AuthService } from '../services/auth.service';
 
 import { ToasterContainerComponent, ToasterService, ToasterConfig } from 'angular2-toaster';
-import { FadeInAnimation } from '../shared/animation/index.animation';
+import { SlideLeft2Right } from '../shared/animation/index';
 
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
 	styleUrls: ['./login.component.scss'],
-	animations: [FadeInAnimation],
-	host: { '[@FadeInAnimation]': '' }
+	animations: [SlideLeft2Right],
+	host: { '[@SlideLeft2Right]': '' }
 })
 export class LoginComponent implements OnInit {
 	public toastConfig: ToasterConfig = new
@@ -31,21 +31,22 @@ export class LoginComponent implements OnInit {
 		private router: Router,
 		private toastService: ToasterService
 	) {
-		this.username = new FormControl('', [Validators.required,
-		Validators.minLength(4),
-		Validators.maxLength(100)]);
-		this.password = new FormControl('', [Validators.required,
-		Validators.minLength(8)]);
-		this.loginForm = builder.group({
-			username: this.username,
-			password: this.password
-		});
+		
 	}
 
 	ngOnInit() {
 		if (this.authService.loggedIn) {
 			this.router.navigate(['/']);
 		}
+		this.username = new FormControl('', [Validators.required,
+												Validators.minLength(4),
+												Validators.maxLength(100)]);
+		this.password = new FormControl('', [Validators.required,
+												Validators.minLength(8)]);
+		this.loginForm = this.builder.group({
+			username: this.username,
+			password: this.password
+		});
 	}
 
 	login() {

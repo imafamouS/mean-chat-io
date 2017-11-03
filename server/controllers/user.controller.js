@@ -25,12 +25,12 @@ class UserController extends BaseController {
             .then(data => {
                 res.json(HelperResponse.makeJsonResponseSuccess('Created successful', data));
             })
-            .catch(err => { 
-                if(err.code == 11000){
-                    let error11000 = new ErrorResponse('Login','User already exists');
+            .catch(err => {
+                if (err.code == 11000) {
+                    let error11000 = new ErrorResponse('Login', 'User already exists');
                     return res.status(200).send(HelperResponse.makeJsonResponseFailure(error11000));
                 }
-                res.json(HelperResponse.makeJsonResponseFailure(err)); 
+                res.json(HelperResponse.makeJsonResponseFailure(err));
             });
     }
 

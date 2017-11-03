@@ -16,6 +16,8 @@ import { AuthGuardLogin } from './services/auth-guard-login.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToasterModule, ToasterService } from 'angular2-toaster';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,14 @@ import { ToasterModule, ToasterService } from 'angular2-toaster';
     LoginComponent,
     RegisterComponent,
     NotfoundComponent,
+    ChatComponent,
   ],
   imports: [
     SharedModule,
     BrowserAnimationsModule,
     ToasterModule,
     RoutingModule,
+    MatButtonModule, MatCheckboxModule
   ],
   providers: [
     AuthService,
